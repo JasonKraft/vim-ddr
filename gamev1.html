@@ -21,6 +21,7 @@ var arrows;
 var score = 0;
 var scoreText;
 var cursors;
+var timer;
 
 function preload() {
 
@@ -42,8 +43,8 @@ function create() {
 
     arrows.enableBody = true;
 
-    var newArrow = arrows.create(game.world.width /4 + 64, game.world.height- 32, 'arrowUp');
-    newArrow.body.velocity.y = -125;
+    /*var newArrow = arrows.create(game.world.width /4 + 64, game.world.height- 32, 'arrowUp');
+    newArrow.body.velocity.y = -125;*/
 
     //var upArrow = arrows.create(game.world.width /4, game.world.height- 32, 'arrowUp');
 
@@ -51,9 +52,6 @@ function create() {
     //////////////////////////////
     //spawn single arrow working//
     //////////////////////////////
-    var upArrow = game.add.sprite(game.world.width /4, game.world.height- 32, 'arrowUp');
-    game.physics.arcade.enable(upArrow);
-    upArrow.body.velocity.y = -100;
 
     scoreText = game.add.text(4, 4, 'Score: 0', { fontSize: '32px', fill: '#000' });
 
@@ -70,6 +68,8 @@ function create() {
 
     var tempKey = game.input.keyboard.addKey(Phaser.Keyboard.L);
     tempKey.onDown.add(LPress);
+
+    game.time.events.loop(Phaser.Timer.Second, makeArrow, this);
 
 }
 function HPress(){
@@ -92,12 +92,12 @@ function LPress(){
     scoreText.text = 'Score: ' + score;
 }
 
-function update() {
-    /*if(cursors.left.isDown){
-        score += 5;
+function makeArrow(){
+    var newArrow = arrows.create(game.world.width /4 *, game.world.height- 32, 'arrowUp');
+    newArrow.body.velocity.y = -125;
+}
 
-        scoreText.text = 'Score: ' + score;
-    }*/
+function update() {
 
 }
 
