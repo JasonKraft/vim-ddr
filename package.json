@@ -1,7 +1,7 @@
 {
   "name": "vim-ddr",
   "version": "1.0.0",
-  "description": "",
+  "description": "DDR style game to learn vim commands",
   "main": "index.js",
   "dependencies": {
     "kerberos": "0.0.17",
