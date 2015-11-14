@@ -68,23 +68,43 @@ function create() {
 
 }
 function HPress(){
-    score += 2;
-    scoreText.text = 'Score: ' + score;
+    LeftArrows.forEach(function(arrow){
+        if(arrow.y<200 && arrow.y>100){
+            score += 7;
+            scoreText.text = 'Score: ' + score;
+            arrow.destroy();
+        }
+    }, this);
 }
 
 function JPress(){
-    score += 3;
-    scoreText.text = 'Score: ' + score;
+    DownArrows.forEach(function(arrow){
+        if(arrow.y<200 && arrow.y>100){
+            score += 7;
+            scoreText.text = 'Score: ' + score;
+            arrow.destroy();
+        }
+    }, this);
 }
 
 function KPress(){
-    score += 7;
-    scoreText.text = 'Score: ' + score;
+    UpArrows.forEach(function(arrow){
+        if(arrow.y<200 && arrow.y>100){
+            score += 7;
+            scoreText.text = 'Score: ' + score;
+            arrow.destroy();
+        }
+    }, this);
 }
 
 function LPress(){
-    score += 11;
-    scoreText.text = 'Score: ' + score;
+    RightArrows.forEach(function(arrow){
+        if(arrow.y<200 && arrow.y>100){
+            score += 7;
+            scoreText.text = 'Score: ' + score;
+            arrow.destroy();
+        }
+    }, this);
 }
 
 function updateCounter(){
