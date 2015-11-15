@@ -587,15 +587,19 @@ function create() {
     //creating key press events for H,J,K,L
     var tempKey = game.input.keyboard.addKey(Phaser.Keyboard.H);
     tempKey.onDown.add(HPress);
+    tempKey.onUp.add(HUnpress);
 
     var tempKey = game.input.keyboard.addKey(Phaser.Keyboard.J);
     tempKey.onDown.add(JPress);
+    tempKey.onUp.add(JUnpress);
 
     var tempKey = game.input.keyboard.addKey(Phaser.Keyboard.K);
     tempKey.onDown.add(KPress);
+    tempKey.onUp.add(KUnpress);
 
     var tempKey = game.input.keyboard.addKey(Phaser.Keyboard.L);
     tempKey.onDown.add(LPress);
+    tempKey.onUp.add(LUnpress);
 
     var timeDif = (game.world.height - 17) / songSpeed;
 
@@ -641,6 +645,11 @@ function HPress(){
                 scoreText.text = 'Score: ' + score;
                 arrow.kill();
                 foundArrow = 1;
+
+                //getting arrow outline to change color
+                outline = outlines.getChildAt(0);
+                outline = outlines.create(150, 15, 'leftOutlineGlow');
+                outline.scale.setTo(.75,.75);
             }
             //medium points
             else if(Math.abs(arrow.y-15)/15>.6 && Math.abs(arrow.y-15)/15<=1.2){
@@ -648,6 +657,11 @@ function HPress(){
                 scoreText.text = 'Score: ' + score;
                 arrow.kill();
                 foundArrow = 1;
+
+                //getting arrow outline to change color
+                outline = outlines.getChildAt(0);
+                outline = outlines.create(150, 15, 'leftOutlineGlow');
+                outline.scale.setTo(.75,.75);
             }
             //min points
             else if(Math.abs(arrow.y-15)/15>1.2 && Math.abs(arrow.y-15)/15<=2.5){
@@ -655,6 +669,11 @@ function HPress(){
                 scoreText.text = 'Score: ' + score;
                 arrow.kill();
                 foundArrow = 1;
+
+                //getting arrow outline to change color
+                outline = outlines.getChildAt(0);
+                outline = outlines.create(150, 15, 'leftOutlineGlow');
+                outline.scale.setTo(.75,.75);
             }
         }
     }, this);
@@ -674,6 +693,11 @@ function JPress(){
                 scoreText.text = 'Score: ' + score;
                 arrow.kill();
                 foundArrow = 1;
+
+                //getting arrow outline to change color
+                outline = outlines.getChildAt(1);
+                outline = outlines.create(293, 15, 'downOutlineGlow');
+                outline.scale.setTo(.75,.75);
             }
             //medium points
             else if(Math.abs(arrow.y-15)/15>.6 && Math.abs(arrow.y-15)/15<=1.2){
@@ -681,6 +705,11 @@ function JPress(){
                 scoreText.text = 'Score: ' + score;
                 arrow.kill();
                 foundArrow = 1;
+
+                //getting arrow outline to change color
+                outline = outlines.getChildAt(1);
+                outline = outlines.create(293, 15, 'downOutlineGlow');
+                outline.scale.setTo(.75,.75);
             }
             //min points
             else if(Math.abs(arrow.y-15)/15>1.2 && Math.abs(arrow.y-15)/15<=2.5){
@@ -688,6 +717,11 @@ function JPress(){
                 scoreText.text = 'Score: ' + score;
                 arrow.kill();
                 foundArrow = 1;
+
+                //getting arrow outline to change color
+                outline = outlines.getChildAt(1);
+                outline = outlines.create(293, 15, 'downOutlineGlow');
+                outline.scale.setTo(.75,.75);
             }
         }
     }, this);
@@ -707,6 +741,11 @@ function KPress(){
                 scoreText.text = 'Score: ' + score;
                 arrow.kill();
                 foundArrow = 1;
+
+                //getting arrow outline to change color
+                outline = outlines.getChildAt(2);
+                outline = outlines.create(436, 15, 'upOutlineGlow');
+                outline.scale.setTo(.75,.75);
             }
             //medium points
             else if(Math.abs(arrow.y-15)/15>.6 && Math.abs(arrow.y-15)/15<=1.2){
@@ -714,6 +753,11 @@ function KPress(){
                 scoreText.text = 'Score: ' + score;
                 arrow.kill();
                 foundArrow = 1;
+
+                //getting arrow outline to change color
+                outline = outlines.getChildAt(2);
+                outline = outlines.create(436, 15, 'upOutlineGlow');
+                outline.scale.setTo(.75,.75);
             }
             //min points
             else if(Math.abs(arrow.y-15)/15>1.2 && Math.abs(arrow.y-15)/15<=2.5){
@@ -721,6 +765,11 @@ function KPress(){
                 scoreText.text = 'Score: ' + score;
                 arrow.kill();
                 foundArrow = 1;
+
+                //getting arrow outline to change color
+                outline = outlines.getChildAt(2);
+                outline = outlines.create(436, 15, 'upOutlineGlow');
+                outline.scale.setTo(.75,.75);
             }
         }
     }, this);
@@ -740,6 +789,11 @@ function LPress(){
                 scoreText.text = 'Score: ' + score;
                 arrow.kill();
                 foundArrow = 1;
+
+                //getting arrow outline to change color
+                outline = outlines.getChildAt(3);
+                outline = outlines.create(581, 15, 'rightOutlineGlow');
+                outline.scale.setTo(.75,.75);
             }
             //medium points
             else if(Math.abs(arrow.y-15)/15>.6 && Math.abs(arrow.y-15)/15<=1.2){
@@ -747,6 +801,11 @@ function LPress(){
                 scoreText.text = 'Score: ' + score;
                 arrow.kill();
                 foundArrow = 1;
+
+                //getting arrow outline to change color
+                outline = outlines.getChildAt(3);
+                outline = outlines.create(581, 15, 'rightOutlineGlow');
+                outline.scale.setTo(.75,.75);
             }
             //min points
             else if(Math.abs(arrow.y-15)/15>1.2 && Math.abs(arrow.y-15)/15<=2.5){
@@ -754,6 +813,11 @@ function LPress(){
                 scoreText.text = 'Score: ' + score;
                 arrow.kill();
                 foundArrow = 1;
+
+                //getting arrow outline to change color
+                outline = outlines.getChildAt(3);
+                outline = outlines.create(581, 15, 'rightOutlineGlow');
+                outline.scale.setTo(.75,.75);
             }
         }
     }, this);
@@ -761,6 +825,34 @@ function LPress(){
         score -= 1;
         scoreText.text = 'Score: ' + score;
     }
+}
+
+function HUnpress(){
+    //getting arrow outline to change color
+    outline = outlines.getChildAt(0);
+    outline.frame = 0;
+    outline.scale.setTo(.75,.75);
+}
+
+function JUnpress(){
+    //getting arrow outline to change color
+    outline = outlines.getChildAt(1);
+    outline.frame = 0;
+    outline.scale.setTo(.75,.75);
+}
+
+function KUnpress(){
+    //getting arrow outline to change color
+    outline = outlines.getChildAt(2);
+    outline.frame = 0;
+    outline.scale.setTo(.75,.75);
+}
+
+function LUnpress(){
+    //getting arrow outline to change color
+    outline = outlines.getChildAt(3);
+    outline.frame = 0;
+    outline.scale.setTo(.75,.75);
 }
 
 function createLeft(){
