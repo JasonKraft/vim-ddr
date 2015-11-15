@@ -39,8 +39,8 @@ function create() {
 
     game.add.sprite(0,0,'background');
 
-    killzone = game.add.sprite(0, 32, 'killzone');
-    killzone.enableBody = true;
+    killzone = game.add.sprite(0, -32, 'killzone');
+    game.physics.arcade.enable(killzone);
 
     LeftArrows = game.add.group();
     LeftArrows.enableBody = true;
@@ -147,36 +147,19 @@ function createArrow(direction){
 }
 
 function update() {
-    game.physics.arcade.overlap(killzone, LeftArrows, destroyLeftArrow, null, this);
-    game.physics.arcade.overlap(killzone, UpArrows, destroyUpArrow, null, this);
-    game.physics.arcade.overlap(killzone, DownArrows, destroyRightArrow, null, this);
-    game.physics.arcade.overlap(killzone, RightArrows, destroyDownArrow, null, this);
+    game.physics.arcade.overlap(killzone, LeftArrows, destroyArrow, null, this);
+    game.physics.arcade.overlap(killzone, UpArrows, destroyArrow, null, this);
+    game.physics.arcade.overlap(killzone, DownArrows, destroyArrow, null, this);
+    game.physics.arcade.overlap(killzone, RightArrows, destroyArrow, null, this);
 
 }
 
-function destroyLeftArrow (killzone, arrow) {
-    LeftArrows.destroy();
+function destroyArrow (killzone, arrow) {
+    arrow.destroy();
     score -= 5;
     scoreText.text = 'Score: ' + score;
 }
 
-function destroyUpArrow (killzone, arrow) {
-    UpArrows.destroy();
-    score -= 5;
-    scoreText.text = 'Score: ' + score;
-}
-
-function destroyRightArrow (killzone, arrow) {
-    RightArrows.destroy();
-    score -= 5;
-    scoreText.text = 'Score: ' + score;
-}
-
-function destroyDownArrow (killzone, arrow) {
-    DownArrows.destroy();
-    score -= 5;
-    scoreText.text = 'Score: ' + score;
-}
 
 </script>
 
