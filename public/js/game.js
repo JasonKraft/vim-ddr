@@ -543,8 +543,9 @@ function preload() {
 }
 
 function create() {
-    //start playing the song
-    song = game.sound.play('song1');
+    //start playing the song after 2 seconds
+    game.time.events.add(2 * Phaser.Timer.SECOND, startMusic, this);
+    
 
     //set up the physics
     game.physics.startSystem(Phaser.Physics.ARCADE);
@@ -601,7 +602,7 @@ function create() {
     tempKey.onDown.add(LPress);
     tempKey.onUp.add(LUnpress);
 
-    var timeDif = (game.world.height - 17) / (songSpeed*2) * Phaser.Timer.SECOND;
+    var timeDif = ((game.world.height - 17) / (songSpeed*2) + 2) * Phaser.Timer.SECOND;
 
     //set timers for all the arrows given for the song
     /*for(var i = 0; i < songData.data.length; i++){
@@ -621,7 +622,7 @@ function create() {
 
     for(var i = 0; i < songData.data.length; i++){
         if(songData.data[i][0] & 8){
-            game.time.events.add(songData.data[i][1] + timeDif , createLeft, this);
+            game.time.events.add(songData.data[i][1] + timeDif, createLeft, this);
         }
         if(songData.data[i][0] & 4){
             game.time.events.add(songData.data[i][1] + timeDif, createDown, this);
@@ -636,6 +637,10 @@ function create() {
 
     game.time.events.add(songData.data[songData.data.length-1][1] + 5 * Phaser.Timer.SECOND - timeDif, endLevel, this);
 
+}
+
+function startMusic(){
+    song = game.sound.play('song1');
 }
 function HPress(){
     var foundArrow = 0;
@@ -890,7 +895,7 @@ function update() {
 }
 
 function endLevel(){
-    
+
 }
 
 function destroyArrow (killzone, arrow) {
