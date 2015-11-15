@@ -86,40 +86,48 @@ function create() {
 }
 function HPress(){
     LeftArrows.forEach(function(arrow){
-        if(arrow.y<200 && arrow.y>100){
-            score += 7;
-            scoreText.text = 'Score: ' + score;
-            arrow.destroy();
+        if(arrow.alive){
+            if(arrow.y<200 && arrow.y>100){
+                score += 7;
+                scoreText.text = 'Score: ' + score;
+                arrow.kill();
+            }
         }
     }, this);
 }
 
 function JPress(){
     DownArrows.forEach(function(arrow){
-        if(arrow.y<200 && arrow.y>100){
-            score += 7;
-            scoreText.text = 'Score: ' + score;
-            arrow.destroy();
+        if(arrow.alive){
+            if(arrow.y<200 && arrow.y>100){
+                score += 7;
+                scoreText.text = 'Score: ' + score;
+                arrow.kill();
+            }
         }
     }, this);
 }
 
 function KPress(){
     UpArrows.forEach(function(arrow){
-        if(arrow.y<200 && arrow.y>100){
-            score += 7;
-            scoreText.text = 'Score: ' + score;
-            arrow.destroy();
+        if(arrow.alive){
+            if(arrow.y<200 && arrow.y>100){
+                score += 7;
+                scoreText.text = 'Score: ' + score;
+                arrow.kill();
+            }
         }
     }, this);
 }
 
 function LPress(){
     RightArrows.forEach(function(arrow){
-        if(arrow.y<200 && arrow.y>100){
-            score += 7;
-            scoreText.text = 'Score: ' + score;
-            arrow.destroy();
+        if(arrow.alive){
+            if(arrow.y<200 && arrow.y>100){
+                score += 7;
+                scoreText.text = 'Score: ' + score;
+                arrow.kill();
+            }
         }
     }, this);
 }
@@ -136,45 +144,33 @@ function LPress(){
 function createArrow(direction){
     switch(direction){
         case 'left':
-        //creates left arrow
-        var newArrow = LeftArrows.create(game.world.width /4, game.world.height+ 32, 'arrowLeft');
-<<<<<<< HEAD
-        newArrow.scale.setTo(.5,.5);
-        newArrow.body.velocity.y = -125;
-=======
-        newArrow.body.velocity.y = songSpeed;
->>>>>>> FETCH_HEAD
-        break;
+            //creates left arrow
+            var newArrow = LeftArrows.create(game.world.width /4, game.world.height+ 32, 'arrowLeft');
+            newArrow.scale.setTo(.5,.5);
+            newArrow.body.velocity.y = -125;
+            newArrow.body.velocity.y = songSpeed;
+            break;
         case 'down':
         //creates down arrow
         var newArrow = DownArrows.create(game.world.width /4 + 64, game.world.height+ 32, 'arrowDown');
-<<<<<<< HEAD
-        newArrow.scale.setTo(.5,.5);
-        newArrow.body.velocity.y = -125;
-=======
-        newArrow.body.velocity.y = songSpeed;
->>>>>>> FETCH_HEAD
-        break;
+            newArrow.scale.setTo(.5,.5);
+            newArrow.body.velocity.y = -125;
+            newArrow.body.velocity.y = songSpeed;
+            break;
         case 'up':
-        //creates up arrow
-        var newArrow = UpArrows.create(game.world.width /4 + 128, game.world.height+ 32, 'arrowUp');
-<<<<<<< HEAD
-        newArrow.scale.setTo(.5,.5);
-        newArrow.body.velocity.y = -125;
-=======
-        newArrow.body.velocity.y = songSpeed;
->>>>>>> FETCH_HEAD
-        break;
+            //creates up arrow
+            var newArrow = UpArrows.create(game.world.width /4 + 128, game.world.height+ 32, 'arrowUp');
+            newArrow.scale.setTo(.5,.5);
+            newArrow.body.velocity.y = -125;
+            newArrow.body.velocity.y = songSpeed;
+            break;
         case 'right':
-        //creates right arrow
-        var newArrow = RightArrows.create(game.world.width /4 + 192, game.world.height+ 32, 'arrowRight');
-<<<<<<< HEAD
-        newArrow.scale.setTo(.5,.5);
-        newArrow.body.velocity.y = -125;
-=======
-        newArrow.body.velocity.y = songSpeed;
->>>>>>> FETCH_HEAD
-        break;
+            //creates right arrow
+            var newArrow = RightArrows.create(game.world.width /4 + 192, game.world.height+ 32, 'arrowRight');
+            newArrow.scale.setTo(.5,.5);
+            newArrow.body.velocity.y = -125;
+            newArrow.body.velocity.y = songSpeed;
+            break;
     }
 }
 
