@@ -496,10 +496,10 @@ var PreloadState = {
         game.load.image('background', 'assets/Background.png');
         game.load.image('killzone', 'assets/Killzone.png');
 
-        game.load.image('upOutline','assets/UpArrow_outline.png');
-        game.load.image('rightOutline','assets/RightArrow_outline.png');
-        game.load.image('downOutline','assets/DownArrow_outline.png');
-        game.load.image('leftOutline','assets/LeftArrow_outline.png');
+        game.load.spritesheet('upOutline','assets/UpArrow_outline.png', 98, 96);
+        game.load.spritesheet('rightOutline','assets/RightArrow_outline.png', 96, 98);
+        game.load.spritesheet('downOutline','assets/DownArrow_outline.png', 98, 96);
+        game.load.spritesheet('leftOutline','assets/LeftArrow_outline.png', 96, 98);
 
         //load audio assets
         game.load.audio('song1', [songData.url + '.ogg', songData.url + '.mp3']);
