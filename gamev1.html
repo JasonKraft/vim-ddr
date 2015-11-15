@@ -147,28 +147,24 @@ function createArrow(direction){
             //creates left arrow
             var newArrow = LeftArrows.create(game.world.width /4, game.world.height+ 32, 'arrowLeft');
             newArrow.scale.setTo(.5,.5);
-            newArrow.body.velocity.y = -125;
             newArrow.body.velocity.y = songSpeed;
             break;
         case 'down':
         //creates down arrow
         var newArrow = DownArrows.create(game.world.width /4 + 64, game.world.height+ 32, 'arrowDown');
             newArrow.scale.setTo(.5,.5);
-            newArrow.body.velocity.y = -125;
             newArrow.body.velocity.y = songSpeed;
             break;
         case 'up':
             //creates up arrow
             var newArrow = UpArrows.create(game.world.width /4 + 128, game.world.height+ 32, 'arrowUp');
             newArrow.scale.setTo(.5,.5);
-            newArrow.body.velocity.y = -125;
             newArrow.body.velocity.y = songSpeed;
             break;
         case 'right':
             //creates right arrow
             var newArrow = RightArrows.create(game.world.width /4 + 192, game.world.height+ 32, 'arrowRight');
             newArrow.scale.setTo(.5,.5);
-            newArrow.body.velocity.y = -125;
             newArrow.body.velocity.y = songSpeed;
             break;
     }
