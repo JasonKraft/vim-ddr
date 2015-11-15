@@ -20,18 +20,13 @@ var bel = new Song.Song({
     difficulty: "Easy",
 })
 
-var obj = {
-    level: "0101",
-    length: 11
-};
 
-bel.addLevelData(obj);
 db.once('open', function() {
     Jason.save(function(err) {
         if (err) throw err;
         else {
             Jason.defineProgress(bel.getName(), 2, 3, 4);
-
+            bel.defineLevelData(["0101", 11]);
             console.log(bel.getData());
             console.log(Jason.getName());
             console.log(Jason.getUpdatedDate());

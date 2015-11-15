@@ -5,7 +5,7 @@ var songSchema = new Schema({
     
     songName: String,
     difficulty: String,
-    data: [{level: String, lengthOfTime: Number}],
+    data: [],
     
     created_at: Date,
     updated_at: Date
@@ -30,9 +30,17 @@ songSchema.methods.getCreatedDate = function() {
 songSchema.methods.getUpdatedDate = function() {
     return this.updated_at;
 }
-songSchema.methods.addLevelData = function(levelData) {
+songSchema.methods.updateLevelData = function(dataObj) {
+    this.data.push(dataObj);
+}
+songSchema.methods.defineLevelData = function(levelData) {
 
-    this.data.push([levelData.level, levelData.length]);
+    var obj = new Object({
+        level: levelData[0],
+        time: levelData[1]
+    });
+    
+    this.updateLevelData(obj);
 
 }
 
