@@ -90,20 +90,20 @@ function create() {
 
     game.add.sprite(0,0,'background');
 
-    killzone = game.add.sprite(0, -50, 'killzone');
+    killzone = game.add.sprite(0, -65, 'killzone');
     game.physics.arcade.enable(killzone);
 
     //adding outlines to the canvas
     outlines = game.add.group();
     outlines.enableBody = true;
-    leftOutline = outlines.create(game.world.width /4, 15, 'leftOutline');
-    leftOutline.scale.setTo(.5,.5);
-    downOutline = outlines.create(game.world.width /4+64, 15, 'downOutline');
-    downOutline.scale.setTo(.5,.5);
-    upOutline = outlines.create(game.world.width /4+128, 15, 'upOutline');
-    upOutline.scale.setTo(.5,.5);
-    rightOutline = outlines.create(game.world.width /4+192, 15, 'rightOutline');
-    rightOutline.scale.setTo(.5,.5);
+    leftOutline = outlines.create(150, 15, 'leftOutline');
+    leftOutline.scale.setTo(.75,.75);
+    downOutline = outlines.create(293, 15, 'downOutline');
+    downOutline.scale.setTo(.75,.75);
+    upOutline = outlines.create(436, 15, 'upOutline');
+    upOutline.scale.setTo(.75,.75);
+    rightOutline = outlines.create(581, 15, 'rightOutline');
+    rightOutline.scale.setTo(.75,.75);
 
     //creating respective groups for the different arrows
     LeftArrows = game.add.group();
@@ -118,7 +118,7 @@ function create() {
     RightArrows = game.add.group();
     RightArrows.enableBody = true;
 
-    scoreText = game.add.text(4, 4, 'Score: 0', { fontSize: '32px', fill: '#000' });
+    scoreText = game.add.text(10, game.world.height-40, 'Score: 0', { fontSize: '32px', fill: '#e9f6fd', font: '32pt New' });
 
 
     //creating key press events for H,J,K,L
@@ -245,26 +245,26 @@ function createArrow(direction){
     switch(direction){
         case 'left':
             //creates left arrow
-            var newArrow = LeftArrows.create(game.world.width /4, game.world.height+ 32, 'arrowLeft');
-            newArrow.scale.setTo(.5,.5);
+            var newArrow = LeftArrows.create(155, game.world.height+ 32, 'arrowLeft');
+            newArrow.scale.setTo(.65,.65);
             newArrow.body.velocity.y = songSpeed;
             break;
         case 'down':
         //creates down arrow
-        var newArrow = DownArrows.create(game.world.width /4 + 64, game.world.height+ 32, 'arrowDown');
-            newArrow.scale.setTo(.5,.5);
+        var newArrow = DownArrows.create(298, game.world.height+ 32, 'arrowDown');
+            newArrow.scale.setTo(.65,.65);
             newArrow.body.velocity.y = songSpeed;
             break;
         case 'up':
             //creates up arrow
-            var newArrow = UpArrows.create(game.world.width /4 + 128, game.world.height+ 32, 'arrowUp');
-            newArrow.scale.setTo(.5,.5);
+            var newArrow = UpArrows.create(441, game.world.height+ 32, 'arrowUp');
+            newArrow.scale.setTo(.65,.65);
             newArrow.body.velocity.y = songSpeed;
             break;
         case 'right':
             //creates right arrow
-            var newArrow = RightArrows.create(game.world.width /4 + 192, game.world.height+ 32, 'arrowRight');
-            newArrow.scale.setTo(.5,.5);
+            var newArrow = RightArrows.create(586, game.world.height+ 32, 'arrowRight');
+            newArrow.scale.setTo(.65,.65);
             newArrow.body.velocity.y = songSpeed;
             break;
     }
