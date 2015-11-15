@@ -4,9 +4,12 @@
   "description": "DDR style game to learn vim commands",
   "main": "index.js",
   "dependencies": {
+    "body-parser": "^1.14.1",
+    "cookie-parser": "^1.4.0",
     "kerberos": "0.0.17",
     "mongodb": "^2.0.48",
     "mongoose": "^4.2.5",
+    "multer": "^1.1.0",
     "phaser": "^2.4.4"
   },
   "devDependencies": {},
