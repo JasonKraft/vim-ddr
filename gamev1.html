@@ -37,6 +37,11 @@ function preload() {
     game.load.image('background', 'assets/BG.png');
     game.load.image('killzone', 'assets/Killzone.png');
 
+    game.load.image('upOutline','assets/UpArrow_outline.png');
+    game.load.image('rightOutline','assets/RightArrow_outline.png');
+    game.load.image('downOutline','assets/DownArrow_outline.png');
+    game.load.image('leftOutline','assets/LeftArrow_outline.png');
+
     game.load.audio('song1', ['assets/harder_better_faster_stronger.mp3', 'assets/harder_better_faster_stronger.ogg'])
 }
 
@@ -50,6 +55,19 @@ function create() {
     killzone = game.add.sprite(0, -50, 'killzone');
     game.physics.arcade.enable(killzone);
 
+    //adding outlines to the canvas
+    outlines = game.add.group();
+    outlines.enableBody = true;
+    leftOutline = outlines.create(game.world.width /4, 15, 'leftOutline');
+    leftOutline.scale.setTo(.5,.5);
+    downOutline = outlines.create(game.world.width /4+64, 15, 'downOutline');
+    downOutline.scale.setTo(.5,.5);
+    upOutline = outlines.create(game.world.width /4+128, 15, 'upOutline');
+    upOutline.scale.setTo(.5,.5);
+    rightOutline = outlines.create(game.world.width /4+192, 15, 'rightOutline');
+    rightOutline.scale.setTo(.5,.5);
+
+    //creating respective groups for the different arrows
     LeftArrows = game.add.group();
     LeftArrows.enableBody = true;
 
@@ -65,6 +83,7 @@ function create() {
     scoreText = game.add.text(4, 4, 'Score: 0', { fontSize: '32px', fill: '#000' });
 
 
+    //creating key press events for H,J,K,L
     var tempKey = game.input.keyboard.addKey(Phaser.Keyboard.H);
     tempKey.onDown.add(HPress);
 
@@ -87,8 +106,21 @@ function create() {
 function HPress(){
     LeftArrows.forEach(function(arrow){
         if(arrow.alive){
-            if(arrow.y<200 && arrow.y>100){
+            //max points
+            if(Math.abs(arrow.y-15)/15>0 && Math.abs(arrow.y-15)/15<=.6){
                 score += 7;
+                scoreText.text = 'Score: ' + score;
+                arrow.kill();
+            }
+            //medium points
+            else if(Math.abs(arrow.y-15)/15>.6 && Math.abs(arrow.y-15)/15<=1.2){
+                score += 4;
+                scoreText.text = 'Score: ' + score;
+                arrow.kill();
+            }
+            //min points
+            else if(Math.abs(arrow.y-15)/15>1.2 && Math.abs(arrow.y-15)/15<=2.5){
+                score += 2;
                 scoreText.text = 'Score: ' + score;
                 arrow.kill();
             }
@@ -99,8 +131,21 @@ function HPress(){
 function JPress(){
     DownArrows.forEach(function(arrow){
         if(arrow.alive){
-            if(arrow.y<200 && arrow.y>100){
+            //max points
+            if(Math.abs(arrow.y-15)/15>0 && Math.abs(arrow.y-15)/15<=.6){
                 score += 7;
+                scoreText.text = 'Score: ' + score;
+                arrow.kill();
+            }
+            //medium points
+            else if(Math.abs(arrow.y-15)/15>.6 && Math.abs(arrow.y-15)/15<=1.2){
+                score += 4;
+                scoreText.text = 'Score: ' + score;
+                arrow.kill();
+            }
+            //min points
+            else if(Math.abs(arrow.y-15)/15>1.2 && Math.abs(arrow.y-15)/15<=2.5){
+                score += 2;
                 scoreText.text = 'Score: ' + score;
                 arrow.kill();
             }
@@ -111,8 +156,21 @@ function JPress(){
 function KPress(){
     UpArrows.forEach(function(arrow){
         if(arrow.alive){
-            if(arrow.y<200 && arrow.y>100){
+            //max points
+            if(Math.abs(arrow.y-15)/15>0 && Math.abs(arrow.y-15)/15<=.6){
                 score += 7;
+                scoreText.text = 'Score: ' + score;
+                arrow.kill();
+            }
+            //medium points
+            else if(Math.abs(arrow.y-15)/15>.6 && Math.abs(arrow.y-15)/15<=1.2){
+                score += 4;
+                scoreText.text = 'Score: ' + score;
+                arrow.kill();
+            }
+            //min points
+            else if(Math.abs(arrow.y-15)/15>1.2 && Math.abs(arrow.y-15)/15<=2.5){
+                score += 2;
                 scoreText.text = 'Score: ' + score;
                 arrow.kill();
             }
@@ -123,8 +181,21 @@ function KPress(){
 function LPress(){
     RightArrows.forEach(function(arrow){
         if(arrow.alive){
-            if(arrow.y<200 && arrow.y>100){
+            //max points
+            if(Math.abs(arrow.y-15)/15>0 && Math.abs(arrow.y-15)/15<=.6){
                 score += 7;
+                scoreText.text = 'Score: ' + score;
+                arrow.kill();
+            }
+            //medium points
+            else if(Math.abs(arrow.y-15)/15>.6 && Math.abs(arrow.y-15)/15<=1.2){
+                score += 4;
+                scoreText.text = 'Score: ' + score;
+                arrow.kill();
+            }
+            //min points
+            else if(Math.abs(arrow.y-15)/15>1.2 && Math.abs(arrow.y-15)/15<=2.5){
+                score += 2;
                 scoreText.text = 'Score: ' + score;
                 arrow.kill();
             }
