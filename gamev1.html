@@ -26,10 +26,10 @@ var killzone;
 
 function preload() {
 
-    game.load.image('arrowUp', 'assets/up.png');
-    game.load.image('arrowDown', 'assets/down.png');
-    game.load.image('arrowLeft', 'assets/left.png');
-    game.load.image('arrowRight', 'assets/right.png');
+    game.load.image('arrowUp', 'assets/UpArrow.png');
+    game.load.image('arrowDown', 'assets/DownArrow.png');
+    game.load.image('arrowLeft', 'assets/LeftArrow.png');
+    game.load.image('arrowRight', 'assets/RightArrow.png');
     game.load.image('background', 'assets/BG.png');
     game.load.image('killzone', 'assets/Killzone.png');
 }
@@ -74,56 +74,40 @@ function create() {
 }
 function HPress(){
     LeftArrows.forEach(function(arrow){
-        if(arrow.alive){
-            if(arrow.y<200 && arrow.y>100){
-                score += 7;
-                scoreText.text = 'Score: ' + score;
-                arrow.kill();
-            }
+        if(arrow.y<200 && arrow.y>100){
+            score += 7;
+            scoreText.text = 'Score: ' + score;
+            arrow.destroy();
         }
     }, this);
 }
 
 function JPress(){
     DownArrows.forEach(function(arrow){
-        if(arrow.alive){
-            if(arrow.y<200 && arrow.y>100){
-                score += 7;
-                scoreText.text = 'Score: ' + score;
-                arrow.kill();
-            }
+        if(arrow.y<200 && arrow.y>100){
+            score += 7;
+            scoreText.text = 'Score: ' + score;
+            arrow.destroy();
         }
     }, this);
 }
 
 function KPress(){
     UpArrows.forEach(function(arrow){
-        if(arrow.alive){
-            if(arrow.y<200 && arrow.y>100){
-                score += 7;
-                scoreText.text = 'Score: ' + score;
-                arrow.kill();
-            }else if(arrow.y<250 && arrow.y>50){
-                score += 4;
-                scoreText.text = 'Score: ' + score;
-                arrow.kill();
-            }else if(arrow.y<300 && arrow.y>25){
-                score += 2;
-                scoreText.text = 'Score: ' + score;
-                arrow.kill();
-            }
+        if(arrow.y<200 && arrow.y>100){
+            score += 7;
+            scoreText.text = 'Score: ' + score;
+            arrow.destroy();
         }
     }, this);
 }
 
 function LPress(){
     RightArrows.forEach(function(arrow){
-        if(arrow.alive){
-            if(arrow.y<200 && arrow.y>100){
-                score += 7;
-                scoreText.text = 'Score: ' + score;
-                arrow.kill();
-            }
+        if(arrow.y<200 && arrow.y>100){
+            score += 7;
+            scoreText.text = 'Score: ' + score;
+            arrow.destroy();
         }
     }, this);
 }
@@ -142,21 +126,25 @@ function createArrow(direction){
         case 'left':
         //creates left arrow
         var newArrow = LeftArrows.create(game.world.width /4, game.world.height+ 32, 'arrowLeft');
+        newArrow.scale.setTo(.5,.5);
         newArrow.body.velocity.y = -125;
         break;
         case 'down':
         //creates down arrow
         var newArrow = DownArrows.create(game.world.width /4 + 64, game.world.height+ 32, 'arrowDown');
+        newArrow.scale.setTo(.5,.5);
         newArrow.body.velocity.y = -125;
         break;
         case 'up':
         //creates up arrow
         var newArrow = UpArrows.create(game.world.width /4 + 128, game.world.height+ 32, 'arrowUp');
+        newArrow.scale.setTo(.5,.5);
         newArrow.body.velocity.y = -125;
         break;
         case 'right':
         //creates right arrow
         var newArrow = RightArrows.create(game.world.width /4 + 192, game.world.height+ 32, 'arrowRight');
+        newArrow.scale.setTo(.5,.5);
         newArrow.body.velocity.y = -125;
         break;
     }
