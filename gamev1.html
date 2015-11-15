@@ -24,6 +24,10 @@ var score = 0;
 var scoreText;
 var killzone;
 
+var songSpeed = -125;
+
+var song;
+
 function preload() {
 
     game.load.image('arrowUp', 'assets/UpArrow.png');
@@ -32,9 +36,13 @@ function preload() {
     game.load.image('arrowRight', 'assets/RightArrow.png');
     game.load.image('background', 'assets/BG.png');
     game.load.image('killzone', 'assets/Killzone.png');
+
+    game.load.audio('song1', ['assets/harder_better_faster_stronger.mp3', 'assets/harder_better_faster_stronger.ogg'])
 }
 
 function create() {
+    song = game.sound.play('song1');
+    
     game.physics.startSystem(Phaser.Physics.ARCADE);
 
     game.add.sprite(0,0,'background');
@@ -69,7 +77,11 @@ function create() {
     var tempKey = game.input.keyboard.addKey(Phaser.Keyboard.L);
     tempKey.onDown.add(LPress);
 
-    game.time.events.loop(Phaser.Timer.SECOND, updateCounter, this);
+    //game.time.events.loop(Phaser.Timer.SECOND, updateCounter, this);
+    game.time.events.add(Phaser.Timer.SECOND * 0.25, function(){createArrow('left')}, this);
+    game.time.events.add(Phaser.Timer.SECOND * 0.5, function(){createArrow('down')}, this);
+    game.time.events.add(Phaser.Timer.SECOND * 0.75, function(){createArrow('up')}, this);
+    game.time.events.add(Phaser.Timer.SECOND * 1, function(){createArrow('right')}, this);
 
 }
 function HPress(){
@@ -112,40 +124,56 @@ function LPress(){
     }, this);
 }
 
-function updateCounter(){
+/*function updateCounter(){
 
     createArrow('left');
     createArrow('up');
     createArrow('down');
     createArrow('right');
 
-}
+}*/
 
 function createArrow(direction){
     switch(direction){
         case 'left':
         //creates left arrow
         var newArrow = LeftArrows.create(game.world.width /4, game.world.height+ 32, 'arrowLeft');
+<<<<<<< HEAD
         newArrow.scale.setTo(.5,.5);
         newArrow.body.velocity.y = -125;
+=======
+        newArrow.body.velocity.y = songSpeed;
+>>>>>>> FETCH_HEAD
         break;
         case 'down':
         //creates down arrow
         var newArrow = DownArrows.create(game.world.width /4 + 64, game.world.height+ 32, 'arrowDown');
+<<<<<<< HEAD
         newArrow.scale.setTo(.5,.5);
         newArrow.body.velocity.y = -125;
+=======
+        newArrow.body.velocity.y = songSpeed;
+>>>>>>> FETCH_HEAD
         break;
         case 'up':
         //creates up arrow
         var newArrow = UpArrows.create(game.world.width /4 + 128, game.world.height+ 32, 'arrowUp');
+<<<<<<< HEAD
         newArrow.scale.setTo(.5,.5);
         newArrow.body.velocity.y = -125;
+=======
+        newArrow.body.velocity.y = songSpeed;
+>>>>>>> FETCH_HEAD
         break;
         case 'right':
         //creates right arrow
         var newArrow = RightArrows.create(game.world.width /4 + 192, game.world.height+ 32, 'arrowRight');
+<<<<<<< HEAD
         newArrow.scale.setTo(.5,.5);
         newArrow.body.velocity.y = -125;
+=======
+        newArrow.body.velocity.y = songSpeed;
+>>>>>>> FETCH_HEAD
         break;
     }
 }
