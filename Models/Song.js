@@ -1,37 +1,15 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
-
-var levelSchema = new Schema({
-    
-    data: [],
-    
-    created_at: Date ,
-    updated_at: Date
-    
-});
-
 var songSchema = new Schema({
     
     songName: String,
     difficulty: String,
-    data: levelSchema,
+    data: [],
     
     created_at: Date,
     updated_at: Date
 })
-
-levelSchema.methods.getData = function() {
-    return this.data;
-}
-
-levelSchema.methods.getCreatedDate = function() {
-    return this.created_at;
-}
-
-levelSchema.methods.getUpdatedDate = function() {
-    return this.updated_at;
-}
 
 songSchema.methods.getName = function() {
     return this.songName;
@@ -53,17 +31,6 @@ songSchema.methods.getUpdatedDate = function() {
     return this.updated_at;
 }
 
-levelSchema.pre('save', function(next) {
-
-    var currentDate = new Date();
-
-    this.updated_at = currentDate;
-
-    if(!this.created_at) this.created_at = currentDate;
-    
-    next();
-});
-
 songSchema.pre('save', function(next) {
 
     var currentDate = new Date();
@@ -74,3 +41,6 @@ songSchema.pre('save', function(next) {
     
     next();
 });
+
+var Song = mongoose.model('Song', songSchema);
+module.exports.Song = Song;
