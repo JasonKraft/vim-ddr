@@ -648,7 +648,7 @@ function HPress(){
 
                 //getting arrow outline to change color
                 outline = outlines.getChildAt(0);
-                outline = outlines.create(150, 15, 'leftOutlineGlow');
+                outline.frame = 1;
                 outline.scale.setTo(.75,.75);
             }
             //medium points
@@ -660,7 +660,7 @@ function HPress(){
 
                 //getting arrow outline to change color
                 outline = outlines.getChildAt(0);
-                outline = outlines.create(150, 15, 'leftOutlineGlow');
+                outline.frame = 1;
                 outline.scale.setTo(.75,.75);
             }
             //min points
@@ -672,7 +672,7 @@ function HPress(){
 
                 //getting arrow outline to change color
                 outline = outlines.getChildAt(0);
-                outline = outlines.create(150, 15, 'leftOutlineGlow');
+                outline.frame = 1;
                 outline.scale.setTo(.75,.75);
             }
         }
@@ -696,7 +696,7 @@ function JPress(){
 
                 //getting arrow outline to change color
                 outline = outlines.getChildAt(1);
-                outline = outlines.create(293, 15, 'downOutlineGlow');
+                outline.frame = 1;
                 outline.scale.setTo(.75,.75);
             }
             //medium points
@@ -708,7 +708,7 @@ function JPress(){
 
                 //getting arrow outline to change color
                 outline = outlines.getChildAt(1);
-                outline = outlines.create(293, 15, 'downOutlineGlow');
+                outline.frame = 1;
                 outline.scale.setTo(.75,.75);
             }
             //min points
@@ -720,7 +720,7 @@ function JPress(){
 
                 //getting arrow outline to change color
                 outline = outlines.getChildAt(1);
-                outline = outlines.create(293, 15, 'downOutlineGlow');
+                outline.frame = 1;
                 outline.scale.setTo(.75,.75);
             }
         }
@@ -744,7 +744,7 @@ function KPress(){
 
                 //getting arrow outline to change color
                 outline = outlines.getChildAt(2);
-                outline = outlines.create(436, 15, 'upOutlineGlow');
+                outline.frame = 1;
                 outline.scale.setTo(.75,.75);
             }
             //medium points
@@ -756,7 +756,7 @@ function KPress(){
 
                 //getting arrow outline to change color
                 outline = outlines.getChildAt(2);
-                outline = outlines.create(436, 15, 'upOutlineGlow');
+                outline.frame = 1;
                 outline.scale.setTo(.75,.75);
             }
             //min points
@@ -768,7 +768,7 @@ function KPress(){
 
                 //getting arrow outline to change color
                 outline = outlines.getChildAt(2);
-                outline = outlines.create(436, 15, 'upOutlineGlow');
+                outline.frame = 1;
                 outline.scale.setTo(.75,.75);
             }
         }
@@ -792,7 +792,7 @@ function LPress(){
 
                 //getting arrow outline to change color
                 outline = outlines.getChildAt(3);
-                outline = outlines.create(581, 15, 'rightOutlineGlow');
+                outline.frame = 1;
                 outline.scale.setTo(.75,.75);
             }
             //medium points
@@ -804,7 +804,7 @@ function LPress(){
 
                 //getting arrow outline to change color
                 outline = outlines.getChildAt(3);
-                outline = outlines.create(581, 15, 'rightOutlineGlow');
+                outline.frame = 1;
                 outline.scale.setTo(.75,.75);
             }
             //min points
@@ -816,7 +816,7 @@ function LPress(){
 
                 //getting arrow outline to change color
                 outline = outlines.getChildAt(3);
-                outline = outlines.create(581, 15, 'rightOutlineGlow');
+                outline.frame = 1;
                 outline.scale.setTo(.75,.75);
             }
         }

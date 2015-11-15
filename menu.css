@@ -20,6 +20,7 @@ select {
 	width: 50%;
     margin: 0 auto;
     padding-top: 200px;
-    color: white;
-    font-size: 120%;
+    color: #e9f6fd;
+    font-size: 150%;
+    font-family: 'white_rabbitregular';
 }
