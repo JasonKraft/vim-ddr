@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title><%= title %></title>
+	<link rel="stylesheet" href="/stylesheets/style.css" />
+</head>
+<body>
+	<% if (!isAuthenticated) { %>
+		<h1>Welcome!</h1>
+		<a href="/login">Log in here!</a>
+
+	<% } else { %>
+		Hello, <%= user.name %>!
+
+	<% } %>
+
+
+</body>
+</html>
