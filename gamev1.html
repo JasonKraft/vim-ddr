@@ -1,151 +1,16 @@
 <!doctype html> 
 <html lang="en"> 
-<head> 
-    <meta charset="UTF-8" />
-    <title>Phaser - Making your first game, part 2</title>
-    <script type="text/javascript" src="js/phaser.min.js"></script>
-    <style type="text/css">
-        body {
-            margin: 0;
-        }
-    </style>
-</head>
-<body>
-
-<script type="text/javascript">
-
-var game = new Phaser.Game(800, 600, Phaser.AUTO, '', { preload: preload, create: create, update: update });
-
-var LeftArrows;
-var DownArrows;
-var UpArrows;
-var RightArrows;
-var score = 0;
-var scoreText;
-
-function preload() {
-
-    game.load.image('arrowUp', 'assets/up.png');
-    game.load.image('arrowDown', 'assets/down.png');
-    game.load.image('arrowLeft', 'assets/left.png');
-    game.load.image('arrowRight', 'assets/right.png');
-    game.load.image('background', 'assets/BG.png');
-}
-
-function create() {
-    game.physics.startSystem(Phaser.Physics.ARCADE);
-
-    game.add.sprite(0,0,'background');
-
-    LeftArrows = game.add.group();
-    LeftArrows.enableBody = true;
-
-    DownArrows = game.add.group();
-    DownArrows.enableBody = true;
-
-    UpArrows = game.add.group();
-    UpArrows.enableBody = true;
-
-    RightArrows = game.add.group();
-    RightArrows.enableBody = true;
-
-    scoreText = game.add.text(4, 4, 'Score: 0', { fontSize: '32px', fill: '#000' });
-
-
-    var tempKey = game.input.keyboard.addKey(Phaser.Keyboard.H);
-    tempKey.onDown.add(HPress);
-
-    var tempKey = game.input.keyboard.addKey(Phaser.Keyboard.J);
-    tempKey.onDown.add(JPress);
-
-    var tempKey = game.input.keyboard.addKey(Phaser.Keyboard.K);
-    tempKey.onDown.add(KPress);
-
-    var tempKey = game.input.keyboard.addKey(Phaser.Keyboard.L);
-    tempKey.onDown.add(LPress);
-
-    game.time.events.loop(Phaser.Timer.SECOND, updateCounter, this);
-
-}
-function HPress(){
-    LeftArrows.forEach(function(arrow){
-        if(arrow.y<200 && arrow.y>100){
-            score += 7;
-            scoreText.text = 'Score: ' + score;
-            arrow.destroy();
-        }
-    }, this);
-}
-
-function JPress(){
-    DownArrows.forEach(function(arrow){
-        if(arrow.y<200 && arrow.y>100){
-            score += 7;
-            scoreText.text = 'Score: ' + score;
-            arrow.destroy();
-        }
-    }, this);
-}
-
-function KPress(){
-    UpArrows.forEach(function(arrow){
-        if(arrow.y<200 && arrow.y>100){
-            score += 7;
-            scoreText.text = 'Score: ' + score;
-            arrow.destroy();
-        }
-    }, this);
-}
-
-function LPress(){
-    RightArrows.forEach(function(arrow){
-        if(arrow.y<200 && arrow.y>100){
-            score += 7;
-            scoreText.text = 'Score: ' + score;
-            arrow.destroy();
-        }
-    }, this);
-}
-
-function updateCounter(){
-
-    createArrow('left');
-    createArrow('up');
-    createArrow('down');
-    createArrow('right');
-
-}
-
-function createArrow(direction){
-    switch(direction){
-        case 'left':
-        //creates left arrow
-        var newArrow = LeftArrows.create(game.world.width /4, game.world.height+ 32, 'arrowLeft');
-        newArrow.body.velocity.y = -125;
-        break;
-        case 'down':
-        //creates down arrow
-        var newArrow = DownArrows.create(game.world.width /4 + 64, game.world.height+ 32, 'arrowDown');
-        newArrow.body.velocity.y = -125;
-        break;
-        case 'up':
-        //creates up arrow
-        var newArrow = UpArrows.create(game.world.width /4 + 128, game.world.height+ 32, 'arrowUp');
-        newArrow.body.velocity.y = -125;
-        break;
-        case 'right':
-        //creates right arrow
-        var newArrow = RightArrows.create(game.world.width /4 + 192, game.world.height+ 32, 'arrowRight');
-        newArrow.body.velocity.y = -125;
-        break;
-    }
-}
-
-function update() {
-
-}
-
-</script>
-
-</body>
+    <head> 
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>VIM DDR</title>
+        <script type="text/javascript" src="js/phaser.min.js"></script>
+        <style type="text/css">
+            body {
+                margin: 0;
+            }
+        </style>
+    </head>
+    <body>
+        <script type="text/javascript" src="js/game.js"></script>
+    </body>
 </html>
