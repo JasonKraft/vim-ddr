@@ -74,40 +74,56 @@ function create() {
 }
 function HPress(){
     LeftArrows.forEach(function(arrow){
-        if(arrow.y<200 && arrow.y>100){
-            score += 7;
-            scoreText.text = 'Score: ' + score;
-            arrow.destroy();
+        if(arrow.alive){
+            if(arrow.y<200 && arrow.y>100){
+                score += 7;
+                scoreText.text = 'Score: ' + score;
+                arrow.kill();
+            }
         }
     }, this);
 }
 
 function JPress(){
     DownArrows.forEach(function(arrow){
-        if(arrow.y<200 && arrow.y>100){
-            score += 7;
-            scoreText.text = 'Score: ' + score;
-            arrow.destroy();
+        if(arrow.alive){
+            if(arrow.y<200 && arrow.y>100){
+                score += 7;
+                scoreText.text = 'Score: ' + score;
+                arrow.kill();
+            }
         }
     }, this);
 }
 
 function KPress(){
     UpArrows.forEach(function(arrow){
-        if(arrow.y<200 && arrow.y>100){
-            score += 7;
-            scoreText.text = 'Score: ' + score;
-            arrow.destroy();
+        if(arrow.alive){
+            if(arrow.y<200 && arrow.y>100){
+                score += 7;
+                scoreText.text = 'Score: ' + score;
+                arrow.kill();
+            }else if(arrow.y<250 && arrow.y>50){
+                score += 4;
+                scoreText.text = 'Score: ' + score;
+                arrow.kill();
+            }else if(arrow.y<300 && arrow.y>25){
+                score += 2;
+                scoreText.text = 'Score: ' + score;
+                arrow.kill();
+            }
         }
     }, this);
 }
 
 function LPress(){
     RightArrows.forEach(function(arrow){
-        if(arrow.y<200 && arrow.y>100){
-            score += 7;
-            scoreText.text = 'Score: ' + score;
-            arrow.destroy();
+        if(arrow.alive){
+            if(arrow.y<200 && arrow.y>100){
+                score += 7;
+                scoreText.text = 'Score: ' + score;
+                arrow.kill();
+            }
         }
     }, this);
 }
