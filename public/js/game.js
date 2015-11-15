@@ -634,6 +634,8 @@ function create() {
         }
     }
 
+    game.time.events.add(songData.data[songData.data.length-1][1] + 5 * Phaser.Timer.SECOND - timeDif, endLevel, this);
+
 }
 function HPress(){
     var foundArrow = 0;
@@ -885,6 +887,10 @@ function update() {
     game.physics.arcade.overlap(killzone, DownArrows, destroyArrow, null, this);
     game.physics.arcade.overlap(killzone, RightArrows, destroyArrow, null, this);
 
+}
+
+function endLevel(){
+    
 }
 
 function destroyArrow (killzone, arrow) {
