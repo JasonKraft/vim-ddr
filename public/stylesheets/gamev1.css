@@ -1,0 +1,13 @@
+body {
+	margin: 0;
+	background-image: url('assets/Vim2.png');
+	background-size: 1200px 820px;
+}
+
+canvas {
+	padding-top: 20px; 
+	width: 800px;
+	height: 600px;
+	margin-left: auto;
+	margin-right: auto;
+}
