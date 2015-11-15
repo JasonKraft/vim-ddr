@@ -123,6 +123,18 @@ passport.deserializeUser(function(id, done) {
 
 // app.use('/', routes);
 // app.use('/users', users);
+app.post('/updateplayer', function(req, res) {
+	if (!req.isAuthenticated()) { res.redirect('/'); }
+
+	User.User.findOneAndUpdate({ _id : req.id }, function(err, player) {
+		if (err) throw err;
+
+		player.defineProgress(req.songName, req.score);
+	});
+
+	res.redirect('/');
+});
+
 app.get('/play', function(req, res, next) {
 	res.render('gamev1');
 	Song.Song.findOne({'songName': req.songName},function(err, song) {

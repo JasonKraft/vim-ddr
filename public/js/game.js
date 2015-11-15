@@ -895,7 +895,12 @@ function update() {
 }
 
 function endLevel(){
-
+    $(document).ready(function() {
+        $.post(
+            '/updateplayer',
+            { 'sname' : songData.songName , 'score' : score }
+        );
+    });
 }
 
 function destroyArrow (killzone, arrow) {

@@ -68,6 +68,15 @@ userSchema.methods.updateProgress = function(progressItem)
 
 userSchema.methods.defineProgress = function(sName, Score)
 {
+
+    for (var i = 0; i < this.progress.length; ++i) {
+        if (this.progress[i].songName == sName) {
+            if (this.progress[i].userScore < Score) { this.progress[i].userScore = score; }
+
+            return;
+        }
+    }
+    
     var progressObj = new Object(
     {
         songName: sName,
