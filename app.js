@@ -13,7 +13,7 @@ var mongoose = require('mongoose');
 // var users = require('./routes/users');
 mongoose.connect('mongodb://localhost/vim_ddr');
 var User = require('./Models/User');
-
+var Song = require('./Models/Song');
 var newUser = User.User({
 	username:'test',
 });
@@ -125,6 +125,28 @@ passport.deserializeUser(function(id, done) {
 // app.use('/users', users);
 app.get('/play', function(req, res, next) {
 	res.render('gamev1');
+	Song.Song.findOne({'songName': req.songName},function(err, song) {
+	  // In case of any error return
+	  if (err){
+	    console.log(err);
+	    return done(err);
+      }
+        
+        if(song){
+        	res.render(song);
+        }
+
+      // save the user
+        newSong.save(function(err) {
+          if (err){
+            console.log('Error in Saving song: '+err);  
+            throw err;  
+          }
+          console.log(newSong);   
+          return done(null, { id : newSong._id, name: newSong.songName});
+        });
+    }
+  });
 });
 
 app.get('/register', function(req, res, next) {
