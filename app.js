@@ -135,8 +135,19 @@ app.post('/updateplayer', function(req, res) {
 	res.redirect('/');
 });
 
+app.get('/menu', function(req, res, next) {
+	if (!req.isAuthenticated()) { res.redirect('/'); }
+
+	Song.Song.find(function(err, songs) {
+		res.render('menu', {'songs' : songs});
+	});
+});
+
 app.get('/play', function(req, res, next) {
-	res.render('gamev1');
+	//res.render('gamev1');
+
+	if (!req.isAuthenticated()) { res.redirect('/'); }
+
 	Song.Song.findOne({'songName': req.songName},function(err, song) {
 	  // In case of any error return
 	  if (err){
@@ -155,7 +166,7 @@ app.get('/register', function(req, res, next) {
 });
 
 app.post('/register', passport.authenticate('signup'), function(req, res) {
-	res.redirect('/');
+	res.redirect('/menu');
 });
 
 app.get('/login', function(req, res, next) {
@@ -163,7 +174,7 @@ app.get('/login', function(req, res, next) {
 });
 
 app.post('/login', passport.authenticate('login'), function(req, res) {
-	res.redirect('/');
+	res.redirect('/menu');
 });
 
 app.get('/logout', function(req, res) {

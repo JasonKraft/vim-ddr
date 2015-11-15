@@ -7,10 +7,12 @@
 <body>
 	<% if (!isAuthenticated) { %>
 		<h1>Welcome!</h1>
-		<a href="/login">Log in here!</a>
+		<a href="/login">Log in here!</a><br>
+		<a href="/register">Sign up here!</a>
 
 	<% } else { %>
 		<h1>Hello, <%= user.name %>!</h1>
+		<a href="/menu">View songs</a><br>
 		<a href="/logout">Log out</a>
 	<% } %>
 

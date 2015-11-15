@@ -14,17 +14,9 @@
 				<fieldset>
 					<label for="songname">Select a song</label>
 					<select name="songname" id="songname">
-						<option></option>
-						<option></option>
-						<option></option>
-						<option></option>
-						<option></option>
-						<option></option>
-						<option></option>
-						<option></option>
-						<option></option>
-						<option></option>
-						<option></option>
+						<% for (var i = 0; i < songs.length; ++i) { %>
+							<option value="<%= songs[i].songName %>"><%= songs[i].songName %></option>
+						<% } %>
 					</select>
 				</fieldset>
 			</form>
