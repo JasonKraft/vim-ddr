@@ -1,3 +1,16 @@
+//temp object until they give  us real ones
+var songData = {
+songName : "Harder Better Faster Stronger",
+url : "assets/harder_better_faster_stronger",
+difficulty : "EZPZ",
+data : [
+{ arrow : "3", time : 200 },
+{ arrow : "3", time : 1000 },
+{ arrow : "10", time : 2000 }
+]
+
+};
+
 
 /////////////////
 //PreBoot state//
@@ -43,7 +56,7 @@ var PreloadState = {
         game.load.image('leftOutline','assets/LeftArrow_outline.png');
 
         //load audio assets
-        game.load.audio('song1', ['assets/harder_better_faster_stronger.mp3', 'assets/harder_better_faster_stronger.ogg']);
+        game.load.audio('song1', [songData.url + '.ogg', songData.url + '.mp3']);
     },
 
     update:function(){
@@ -84,12 +97,16 @@ function preload() {
 }
 
 function create() {
+    //start playing the song
     song = game.sound.play('song1');
-    
+
+    //set up the physics
     game.physics.startSystem(Phaser.Physics.ARCADE);
 
+    //add in the background
     game.add.sprite(0,0,'background');
 
+    //set up the zone to destroy outstanding arrows
     killzone = game.add.sprite(0, -65, 'killzone');
     game.physics.arcade.enable(killzone);
 
@@ -134,11 +151,21 @@ function create() {
     var tempKey = game.input.keyboard.addKey(Phaser.Keyboard.L);
     tempKey.onDown.add(LPress);
 
-    //game.time.events.loop(Phaser.Timer.SECOND, updateCounter, this);
-    game.time.events.add(Phaser.Timer.SECOND * 0.25, function(){createArrow('left')}, this);
-    game.time.events.add(Phaser.Timer.SECOND * 0.5, function(){createArrow('down')}, this);
-    game.time.events.add(Phaser.Timer.SECOND * 0.75, function(){createArrow('up')}, this);
-    game.time.events.add(Phaser.Timer.SECOND * 1, function(){createArrow('right')}, this);
+    //set timers for all the arrows given for the song
+    for(var i = 0; i < songData.data.length; i++){
+        if(songData.data[i].arrow & 8){
+            game.time.events.add(songData.data[i].time, createLeft, this);
+        }
+        if(songData.data[i].arrow & 4){
+            game.time.events.add(songData.data[i].time, createDown, this);
+        }
+        if(songData.data[i].arrow & 2){
+            game.time.events.add(songData.data[i].time, createUp, this);
+        }
+        if(songData.data[i].arrow & 1){
+            game.time.events.add(songData.data[i].time, createRight, this);
+        }
+    }
 
 }
 function HPress(){
@@ -241,33 +268,28 @@ function LPress(){
     }, this);
 }
 
-function createArrow(direction){
-    switch(direction){
-        case 'left':
-            //creates left arrow
-            var newArrow = LeftArrows.create(155, game.world.height+ 32, 'arrowLeft');
-            newArrow.scale.setTo(.65,.65);
-            newArrow.body.velocity.y = songSpeed;
-            break;
-        case 'down':
-        //creates down arrow
-        var newArrow = DownArrows.create(298, game.world.height+ 32, 'arrowDown');
-            newArrow.scale.setTo(.65,.65);
-            newArrow.body.velocity.y = songSpeed;
-            break;
-        case 'up':
-            //creates up arrow
-            var newArrow = UpArrows.create(441, game.world.height+ 32, 'arrowUp');
-            newArrow.scale.setTo(.65,.65);
-            newArrow.body.velocity.y = songSpeed;
-            break;
-        case 'right':
-            //creates right arrow
-            var newArrow = RightArrows.create(586, game.world.height+ 32, 'arrowRight');
-            newArrow.scale.setTo(.65,.65);
-            newArrow.body.velocity.y = songSpeed;
-            break;
-    }
+function createLeft(){
+    var newArrow = LeftArrows.create(155, game.world.height+ 32, 'arrowLeft');
+    newArrow.scale.setTo(.65,.65);
+    newArrow.body.velocity.y = songSpeed;
+}
+
+function createDown(){
+    var newArrow = DownArrows.create(298, game.world.height+ 32, 'arrowDown');
+    newArrow.scale.setTo(.65,.65);
+    newArrow.body.velocity.y = songSpeed;
+}
+
+function createUp(){
+    var newArrow = UpArrows.create(441, game.world.height+ 32, 'arrowUp');
+    newArrow.scale.setTo(.65,.65);
+    newArrow.body.velocity.y = songSpeed;
+}
+
+function createUp(){
+    var newArrow = RightArrows.create(586, game.world.height+ 32, 'arrowRight');
+    newArrow.scale.setTo(.65,.65);
+    newArrow.body.velocity.y = songSpeed;
 }
 
 function update() {
