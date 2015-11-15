@@ -51,14 +51,14 @@ userSchema.methods.updateProgress = function(progressItem)
     this.progress.push(progressItem);
 };
 
-userSchema.methods.defineProgress = function(sName, eScore, mScore, hScore)
+userSchema.methods.defineProgress = function(sName, Score)
 {
     var progressObj = new Object(
     {
         songName: sName,
-        easyScore: eScore,
-        mediumScore: mScore,
-        hardScore: hScore
+        userScore: eScore,
+        //mediumScore: mScore,
+        //hardScore: hScore
     });
     
     this.updateProgress(progressObj);

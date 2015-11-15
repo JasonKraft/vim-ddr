@@ -7,12 +7,22 @@ var songSchema = new Schema({
     difficulty: String,
     data: [],
     
+    url: String,
+    
     created_at: Date,
     updated_at: Date
-})
+});
 
 songSchema.methods.getName = function() {
     return this.songName;
+}
+
+songSchema.methods.getURL = function() {
+    return this.url;
+}
+
+songSchema.methods.setURL = function(URL) {
+    this.url = URL;
 }
 
 songSchema.methods.getDifficulty = function() {
@@ -36,7 +46,7 @@ songSchema.methods.updateLevelData = function(dataObj) {
 songSchema.methods.defineLevelData = function(levelData) {
 
     var obj = new Object({
-        level: levelData[0],
+        arrow: levelData[0],
         time: levelData[1]
     });
     
