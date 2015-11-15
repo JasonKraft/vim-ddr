@@ -6,7 +6,7 @@ var songSchema = new Schema({
     songName: String,
     difficulty: String,
     data: [],
-    
+    speed: Number,
     url: String,
     
     created_at: Date,
@@ -27,6 +27,14 @@ songSchema.methods.setURL = function(URL) {
 
 songSchema.methods.getDifficulty = function() {
     return this.difficulty;
+}
+
+songSchema.methods.getSpeed = function() {
+    return this.speed;
+}
+
+songSchema.methods.setSpeed = function(speedWanted) {
+    this.speed = speedWanted;
 }
 
 songSchema.methods.getData = function(){
@@ -54,6 +62,12 @@ songSchema.methods.defineLevelData = function(levelData) {
 
 }
 
+songSchema.methods.loadData = function (arrayData) {
+    
+    for(var i = 0; i < arrayData.length; i++){
+        this.defineLevelData(arrayData[i]);
+    }
+}
 songSchema.pre('save', function(next) {
 
     var currentDate = new Date();
