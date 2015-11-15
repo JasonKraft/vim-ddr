@@ -19,12 +19,9 @@ data : [
 var PrebootState = {
 
     preload:function() {
-        this.load.image('logo', 'assets/load_screen.png');
-        this.load.image('load_bar', 'assets/load_bar.png');
+        this.load.spritesheet('load', 'assets/LoadScreen.png', 800, 600);
     },
     create:function() {
-        this.game.state.backgroundColo = '#fff';
-
         this.state.start('PreloadState');
     },
 
@@ -37,10 +34,11 @@ var PrebootState = {
 var PreloadState = {
     preload: function() {
 
-        this.logo = this.add.sprite(0, 0, 'logo');
+        this.load = this.add.sprite(0, 0, 'load');
+        this.load.animations.add('loading', [0,1,2,3,4,5], 12, true);
+        this.load.animations.play('loading');
 
-        this.loadBar = this.add.sprite(this.game.world.centerX, this.game.world.height - 20, 'load_bar');
-        this.load.setPreloadSprite(this.loadBar);
+        this.add.text(game.width/2-50, game.height-40, 'Loading...', { fill: '#0c493b', font: '20pt New' })
 
         //load image assets
         game.load.image('arrowUp', 'assets/UpArrow.png');
