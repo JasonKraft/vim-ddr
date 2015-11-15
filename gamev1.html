@@ -24,6 +24,8 @@ var score = 0;
 var scoreText;
 var killzone;
 
+var songSpeed = -125;
+
 function preload() {
 
     game.load.image('arrowUp', 'assets/up.png');
@@ -69,7 +71,11 @@ function create() {
     var tempKey = game.input.keyboard.addKey(Phaser.Keyboard.L);
     tempKey.onDown.add(LPress);
 
-    game.time.events.loop(Phaser.Timer.SECOND, updateCounter, this);
+    //game.time.events.loop(Phaser.Timer.SECOND, updateCounter, this);
+    game.time.events.add(Phaser.Timer.SECOND * 0.25, function(){createArrow('left')}, this);
+    game.time.events.add(Phaser.Timer.SECOND * 0.5, function(){createArrow('down')}, this);
+    game.time.events.add(Phaser.Timer.SECOND * 0.75, function(){createArrow('up')}, this);
+    game.time.events.add(Phaser.Timer.SECOND * 1, function(){createArrow('right')}, this);
 
 }
 function HPress(){
@@ -128,36 +134,36 @@ function LPress(){
     }, this);
 }
 
-function updateCounter(){
+/*function updateCounter(){
 
     createArrow('left');
     createArrow('up');
     createArrow('down');
     createArrow('right');
 
-}
+}*/
 
 function createArrow(direction){
     switch(direction){
         case 'left':
         //creates left arrow
         var newArrow = LeftArrows.create(game.world.width /4, game.world.height+ 32, 'arrowLeft');
-        newArrow.body.velocity.y = -125;
+        newArrow.body.velocity.y = songSpeed;
         break;
         case 'down':
         //creates down arrow
         var newArrow = DownArrows.create(game.world.width /4 + 64, game.world.height+ 32, 'arrowDown');
-        newArrow.body.velocity.y = -125;
+        newArrow.body.velocity.y = songSpeed;
         break;
         case 'up':
         //creates up arrow
         var newArrow = UpArrows.create(game.world.width /4 + 128, game.world.height+ 32, 'arrowUp');
-        newArrow.body.velocity.y = -125;
+        newArrow.body.velocity.y = songSpeed;
         break;
         case 'right':
         //creates right arrow
         var newArrow = RightArrows.create(game.world.width /4 + 192, game.world.height+ 32, 'arrowRight');
-        newArrow.body.velocity.y = -125;
+        newArrow.body.velocity.y = songSpeed;
         break;
     }
 }
