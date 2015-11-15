@@ -135,17 +135,6 @@ app.get('/play', function(req, res, next) {
         if(song){
         	res.render(song);
         }
-
-      // save the user
-        newSong.save(function(err) {
-          if (err){
-            console.log('Error in Saving song: '+err);  
-            throw err;  
-          }
-          console.log(newSong);   
-          return done(null, { id : newSong._id, name: newSong.songName});
-        });
-    }
   });
 });
 
