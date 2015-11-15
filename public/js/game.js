@@ -533,7 +533,7 @@ var score = 0;
 var scoreText;
 var killzone;
 
-var songSpeed = -200;
+var songSpeed = -400;
 
 var song;
 
@@ -601,7 +601,7 @@ function create() {
     tempKey.onDown.add(LPress);
     tempKey.onUp.add(LUnpress);
 
-    var timeDif = (game.world.height - 32) / songSpeed;
+    var timeDif = (game.world.height - 17) / songSpeed;
 
     //set timers for all the arrows given for the song
     /*for(var i = 0; i < songData.data.length; i++){
