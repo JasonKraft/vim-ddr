@@ -658,7 +658,7 @@ function HPress(){
             }
         }
     }, this);
-    if(foundArrow = 0){
+    if(foundArrow == 0){
         score -= 1;
         scoreText.text = 'Score: ' + score;
     }
@@ -691,7 +691,7 @@ function JPress(){
             }
         }
     }, this);
-    if(foundArrow = 0){
+    if(foundArrow == 0){
         score -= 1;
         scoreText.text = 'Score: ' + score;
     }
@@ -724,7 +724,7 @@ function KPress(){
             }
         }
     }, this);
-    if(foundArrow = 0){
+    if(foundArrow == 0){
         score -= 1;
         scoreText.text = 'Score: ' + score;
     }
@@ -757,7 +757,7 @@ function LPress(){
             }
         }
     }, this);
-    if(foundArrow = 0){
+    if(foundArrow == 0){
         score -= 1;
         scoreText.text = 'Score: ' + score;
     }
