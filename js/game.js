@@ -633,8 +633,8 @@ function create() {
 }
 function HPress(){
     var foundArrow = 0;
-    LeftArrows.forEach(function(arrow){
-        if(arrow.alive){
+    LeftArrows.forEachAlive(function(arrow){
+        if(foundArrow===0){
             //max points
             if(Math.abs(arrow.y-15)/15>0 && Math.abs(arrow.y-15)/15<=.6){
                 score += 7;
@@ -666,8 +666,8 @@ function HPress(){
 
 function JPress(){
     var foundArrow = 0;
-    DownArrows.forEach(function(arrow){
-        if(arrow.alive){
+    DownArrows.forEachAlive(function(arrow){
+        if(foundArrow===0){
             //max points
             if(Math.abs(arrow.y-15)/15>0 && Math.abs(arrow.y-15)/15<=.6){
                 score += 7;
@@ -699,8 +699,8 @@ function JPress(){
 
 function KPress(){
     var foundArrow = 0;
-    UpArrows.forEach(function(arrow){
-        if(arrow.alive){
+    UpArrows.forEachAlive(function(arrow){
+        if(foundArrow===0){
             //max points
             if(Math.abs(arrow.y-15)/15>0 && Math.abs(arrow.y-15)/15<=.6){
                 score += 7;
@@ -732,8 +732,8 @@ function KPress(){
 
 function LPress(){
     var foundArrow = 0;
-    RightArrows.forEach(function(arrow){
-        if(arrow.alive){
+    RightArrows.forEachAlive(function(arrow){
+        if(foundArrow===0){
             //max points
             if(Math.abs(arrow.y-15)/15>0 && Math.abs(arrow.y-15)/15<=.6){
                 score += 7;
