@@ -7,10 +7,23 @@ var bodyParser = require('body-parser');
 var expressSession = require('express-session');
 var passport = require('passport');
 var passportLocal = require('passport-local');
-
+var mongoose = require('mongoose');
 
 // var routes = require('./routes/index');
 // var users = require('./routes/users');
+mongoose.connect('mongodb://localhost/vim_ddr');
+var User = require('./Models/User');
+
+var newUser = User.User({
+	username:'test',
+	password:'test1'
+});
+
+newUser.save(function(err) {
+	if (err) throw err;
+
+	console.log('user created');
+})
 
 var app = express();
 app.listen(8080);
@@ -39,11 +52,18 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 passport.use(new passportLocal.Strategy(function(username, password, done) {
-	if (username === password) {
-		done(null, { id : username, name : 'Mr. ' + username});
-	} else {
-		done(null,null);
-	}
+	User.User.find({ 'username' : username, 'password' : password }, function(err, user) {
+		if (err) { done(err,null); }
+		else {
+			if (!user[0]) { done(null,null); }
+			else { done(null, { id : user[0]._id, name : user[0].username }); }
+		}
+	});
+	// if (username === User) {
+	// 	done(null, { id : username, name : 'Mr. ' + username});
+	// } else {
+	// 	done(null,null);
+	// }
 }));
 
 passport.serializeUser(function(user, done) {
@@ -51,7 +71,9 @@ passport.serializeUser(function(user, done) {
 });
 
 passport.deserializeUser(function(id, done) {
-	done(null, { id : id, name : 'Mr. ' + id });
+	User.User.findById(id, function(err, user) {
+		done(null, { id : id, name : user.username });
+	});
 });
 
 // app.use('/', routes);
