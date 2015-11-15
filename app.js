@@ -123,6 +123,9 @@ passport.deserializeUser(function(id, done) {
 
 // app.use('/', routes);
 // app.use('/users', users);
+app.get('/play', function(req, res, next) {
+	res.render('gamev1');
+});
 
 app.get('/register', function(req, res, next) {
 	res.render('register', {title : 'Register'});

@@ -11,8 +11,8 @@
 };*/
 
 var songData = {
-    songName : "Harder Better Faster Stronger",
-    url : "assets/harder_better_faster_stronger",
+    songName : "Pokemon Theme Song",
+    url : "assets/pokemon_theme_song",
     difficulty : "EZPZ",
     data : [[1,5950],
 [1,6177],
