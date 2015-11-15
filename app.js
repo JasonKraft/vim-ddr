@@ -14,17 +14,6 @@ var mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost/vim_ddr');
 var User = require('./Models/User');
 var Song = require('./Models/Song');
-var newUser = User.User({
-	username:'test',
-});
-
-newUser.setPassword('test1');
-
-newUser.save(function(err) {
-	if (err) throw err;
-
-	console.log('user created');
-})
 
 var app = express();
 app.listen(8080);

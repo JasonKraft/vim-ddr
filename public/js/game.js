@@ -1221,6 +1221,7 @@ var PreloadState = {
     }
 }
 
+
 //////////////
 //Game State//
 //////////////
@@ -1240,6 +1241,7 @@ var RightArrows;
 var score = 0;
 var scoreText;
 var killzone;
+var outlines;
 
 var songSpeed = -200;
 
@@ -1310,6 +1312,10 @@ function create() {
     var tempKey = game.input.keyboard.addKey(Phaser.Keyboard.L);
     tempKey.onDown.add(LPress);
     tempKey.onUp.add(LUnpress);
+
+    //skip to end game
+    var tempKey = game.input.keyboard.addKey(Phaser.Keyboard.A);
+    tempKey.onDown.add(APress);
 
     var timeDif = ((game.world.height - 17) / (songSpeed*2) + 2) * Phaser.Timer.SECOND;
 
@@ -1602,6 +1608,24 @@ function update() {
     game.physics.arcade.overlap(killzone, DownArrows, destroyArrow, null, this);
     game.physics.arcade.overlap(killzone, RightArrows, destroyArrow, null, this);
 
+}
+
+function APress(){
+    game.sound.stopAll();
+
+    /////////////////
+    //EndGame State//
+    /////////////////
+    var EndGame = {
+        create:function() {
+            game.add.sprite(0,0,'background');
+            game.add.text(50, 100, 'Congratulations you', { fill: '#fcc287', font: '48pt New' });
+            game.add.text(75, 200, 'finished the song!', { fill: '#fcc287', font: '48pt New' });
+            game.add.text(200, 250, '\n\n\nScore: '+score, { fill: '#fcc287', font: '48pt New' });
+        }
+    }
+    game.state.add('EndGame', EndGame);
+    game.state.start('EndGame');
 }
 
 function endLevel(){
