@@ -12,9 +12,9 @@
 
 var songData = {
     songName : "Pokemon Theme Song",
-    url : "assets/harder_better_faster_stronger",
-    difficulty : "EZPZ",
-    data : [[1,5381],
+    url : "assets/pokemon_theme_song",
+    difficulty : "easy",
+    data : /*[[1,5381],
 [2,5694],
 [1,6099],
 [1,6453],
@@ -722,7 +722,7 @@ var songData = {
 [8,221924],
 [2,222417],
 [4,222420],
-]/*[[1,5950],
+]*/[[1,5950],
 [1,6177],
 [1,6367],
 [2,7036],
@@ -1164,7 +1164,7 @@ var songData = {
 [4,191389],
 [2,191624],
 [4,191808],
-]*/
+]
 }
 
 
@@ -1253,6 +1253,7 @@ function preload() {
 function create() {
     //start playing the song after 2 seconds
     game.time.events.add(2 * Phaser.Timer.SECOND, startMusic, this);
+
     
 
     //set up the physics
@@ -1312,6 +1313,7 @@ function create() {
 
     var timeDif = ((game.world.height - 17) / (songSpeed*2) + 2) * Phaser.Timer.SECOND;
 
+    console.log("timedif is " + timeDif); 
     //set timers for all the arrows given for the song
     /*for(var i = 0; i < songData.data.length; i++){
         if(songData.data[i].arrow & 8){
