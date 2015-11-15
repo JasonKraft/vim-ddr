@@ -1,0 +1,26 @@
+body {
+    margin: 0;
+    background-image: url("assets/Background.png");
+    background-size: 1200px 820px;
+}
+fieldset {
+  border: 0;
+}
+label {
+  display: block;
+  margin: 30px 0 0 0;
+}
+select {
+  width: 200px;
+}
+.overflow {
+  height: 200px;
+}
+#container{
+	width: 50%;
+    margin: 0 auto;
+    padding-top: 200px;
+    color: #e9f6fd;
+    font-size: 150%;
+    font-family: 'white_rabbitregular';
+}
