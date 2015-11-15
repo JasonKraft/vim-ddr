@@ -16,8 +16,9 @@ var User = require('./Models/User');
 
 var newUser = User.User({
 	username:'test',
-	password:'test1'
 });
+
+newUser.setPassword('test1');
 
 newUser.save(function(err) {
 	if (err) throw err;
@@ -51,12 +52,12 @@ app.use(expressSession({
 app.use(passport.initialize());
 app.use(passport.session());
 
-passport.use(new passportLocal.Strategy(function(username, password, done) {
-	User.User.find({ 'username' : username, 'password' : password }, function(err, user) {
+passport.use('login', new passportLocal.Strategy(function(username, password, done) {
+	User.User.findOne({ 'username' : username }, function(err, user) {
 		if (err) { done(err,null); }
 		else {
-			if (!user[0]) { done(null,null); }
-			else { done(null, { id : user[0]._id, name : user[0].username }); }
+			if (!user || !user.isValidPassword(password)) { done(null,null); }
+			else { done(null, { id : user._id, name : user.username }); }
 		}
 	});
 	// if (username === User) {
@@ -64,6 +65,50 @@ passport.use(new passportLocal.Strategy(function(username, password, done) {
 	// } else {
 	// 	done(null,null);
 	// }
+}));
+
+passport.use('signup', new passportLocal.Strategy({
+	passReqToCallBack : true
+},
+function(username, password, done) {
+	findOrCreateUser = function(){
+      // find a user in Mongo with provided username
+      User.User.findOne({'username':username},function(err, user) {
+        // In case of any error return
+        if (err){
+          console.log('Error in SignUp: '+err);
+          return done(err);
+        }
+        // already exists
+        if (user) {
+          console.log('User already exists');
+          return done(null, false/*, 
+             req.flash('message','User Already Exists')*/);
+        } else {
+          // if there is no user with that email
+          // create the user
+          var newUser = new User.User();
+          // set the user's local credentials
+          newUser.username = username;
+          newUser.setPassword(password);
+ 
+          // save the user
+          newUser.save(function(err) {
+            if (err){
+              console.log('Error in Saving user: '+err);  
+              throw err;  
+            }
+            console.log('User Registration succesful');
+            console.log(newUser);   
+            return done(null, { id : newUser._id, name: newUser.username});
+          });
+        }
+      });
+    };
+     
+    // Delay the execution of findOrCreateUser and execute 
+    // the method in the next tick of the event loop
+    process.nextTick(findOrCreateUser);
 }));
 
 passport.serializeUser(function(user, done) {
@@ -79,11 +124,19 @@ passport.deserializeUser(function(id, done) {
 // app.use('/', routes);
 // app.use('/users', users);
 
+app.get('/register', function(req, res, next) {
+	res.render('register', {title : 'Register'});
+});
+
+app.post('/register', passport.authenticate('signup'), function(req, res) {
+	res.redirect('/');
+});
+
 app.get('/login', function(req, res, next) {
 	res.render('login', { title: 'Login' });
 });
 
-app.post('/login', passport.authenticate('local'), function(req, res) {
+app.post('/login', passport.authenticate('login'), function(req, res) {
 	res.redirect('/');
 });
 

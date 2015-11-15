@@ -1,4 +1,6 @@
 var mongoose = require('mongoose');
+var crypto = require('crypto');
+uuid = require('node-uuid');
 var Schema = mongoose.Schema;
 
 
@@ -6,6 +8,7 @@ var userSchema = new Schema(
     {
         username: { type: String, required: true, unique: true },
         password: { type: String, required: true },
+        salt: { type: String, required: true, default: uuid.v1 },
         
         
         progress: [],
@@ -14,6 +17,18 @@ var userSchema = new Schema(
         updated_at: Date
     }
 );
+
+var hash = function(passwd, salt) {
+    return crypto.createHmac('sha256', salt).update(passwd).digest('hex');
+};
+
+userSchema.methods.setPassword = function(passwordString) {
+    this.password = hash(passwordString, this.salt);
+};
+
+userSchema.methods.isValidPassword = function(passwordString) {
+    return this.password === hash(passwordString, this.salt);
+};
 
 userSchema.methods.getName = function() {
     return this.username;
