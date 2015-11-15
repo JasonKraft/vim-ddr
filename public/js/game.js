@@ -539,7 +539,7 @@ var song;
 
 function preload() {
 
-    
+    game.stage.disableVisibilityChange = true;
 }
 
 function create() {
@@ -601,7 +601,7 @@ function create() {
     tempKey.onDown.add(LPress);
     tempKey.onUp.add(LUnpress);
 
-    var timeDif = (game.world.height - 17) / songSpeed;
+    var timeDif = (game.world.height - 17) / (songSpeed*2) * Phaser.Timer.SECOND;
 
     //set timers for all the arrows given for the song
     /*for(var i = 0; i < songData.data.length; i++){
@@ -621,16 +621,16 @@ function create() {
 
     for(var i = 0; i < songData.data.length; i++){
         if(songData.data[i][0] & 8){
-            game.time.events.add(songData.data[i][1] - timeDif , createLeft, this);
+            game.time.events.add(songData.data[i][1] + timeDif , createLeft, this);
         }
         if(songData.data[i][0] & 4){
-            game.time.events.add(songData.data[i][1] - timeDif, createDown, this);
+            game.time.events.add(songData.data[i][1] + timeDif, createDown, this);
         }
         if(songData.data[i][0] & 2){
-            game.time.events.add(songData.data[i][1] - timeDif, createUp, this);
+            game.time.events.add(songData.data[i][1] + timeDif, createUp, this);
         }
         if(songData.data[i][0] & 1){
-            game.time.events.add(songData.data[i][1] - timeDif, createRight, this);
+            game.time.events.add(songData.data[i][1] + timeDif, createRight, this);
         }
     }
 
