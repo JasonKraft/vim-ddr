@@ -1,4 +1,5 @@
 var User = require('./Models/User');
+var Song = require('./Models/Song');
 var mongoose = require("mongoose");
 
 mongoose.connect('mongodb://localhost/vim_ddr', function(err){
@@ -14,15 +15,24 @@ var Jason = new User.User({
     
 });
 
+var bel = new Song.Song({
+    songName: "Hello",
+    difficulty: "Easy",
+})
 
+var obj = {
+    level: "0101",
+    length: 11
+};
 
+bel.addLevelData(obj);
 db.once('open', function() {
     Jason.save(function(err) {
         if (err) throw err;
         else {
-            Jason.defineProgress("Hello", 2, 3, 4);
+            Jason.defineProgress(bel.getName(), 2, 3, 4);
 
-            //Jason.progress.push(Progress);
+            console.log(bel.getData());
             console.log(Jason.getName());
             console.log(Jason.getUpdatedDate());
             console.log(Jason.progress);
