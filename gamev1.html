@@ -26,6 +26,8 @@ var killzone;
 
 var songSpeed = -125;
 
+var song;
+
 function preload() {
 
     game.load.image('arrowUp', 'assets/up.png');
@@ -34,9 +36,13 @@ function preload() {
     game.load.image('arrowRight', 'assets/right.png');
     game.load.image('background', 'assets/BG.png');
     game.load.image('killzone', 'assets/Killzone.png');
+
+    game.load.audio('song1', ['assets/harder_better_faster_stronger.mp3', 'assets/harder_better_faster_stronger.ogg'])
 }
 
 function create() {
+    song = game.sound.play('song1');
+    
     game.physics.startSystem(Phaser.Physics.ARCADE);
 
     game.add.sprite(0,0,'background');
