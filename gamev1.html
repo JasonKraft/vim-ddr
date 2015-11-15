@@ -2,7 +2,7 @@
 <html lang="en"> 
 <head> 
     <meta charset="UTF-8" />
-    <title>Phaser - Making your first game, part 2</title>
+    <title>VIM DDR</title>
     <script type="text/javascript" src="js/phaser.min.js"></script>
     <style type="text/css">
         body {
@@ -14,7 +14,72 @@
 
 <script type="text/javascript">
 
-var game = new Phaser.Game(800, 600, Phaser.AUTO, '', { preload: preload, create: create, update: update });
+/////////////////
+//PreBoot state//
+/////////////////
+
+var PrebootState = {
+
+    preload:function() {
+        this.load.image('logo', 'assets/load_screen.png');
+        this.load.image('load_bar', 'assets/load_bar.png');
+    },
+    create:function() {
+        this.game.state.backgroundColo = '#fff';
+
+        this.state.start('PreloadState');
+    },
+
+}
+
+/////////////////
+//Preload state//
+/////////////////
+
+var PreloadState = {
+    preload: function() {
+
+        this.logo = this.add.sprite(0, 0, 'logo');
+
+        this.loadBar = this.add.sprite(this.game.world.centerX, this.game.world.height - 20, 'load_bar');
+        this.load.setPreloadSprite(this.loadBar);
+
+        //load image assets
+        game.load.image('arrowUp', 'assets/UpArrow.png');
+        game.load.image('arrowDown', 'assets/DownArrow.png');
+        game.load.image('arrowLeft', 'assets/LeftArrow.png');
+        game.load.image('arrowRight', 'assets/RightArrow.png');
+        game.load.image('background', 'assets/Background.png');
+        game.load.image('killzone', 'assets/Killzone.png');
+
+        game.load.image('upOutline','assets/UpArrow_outline.png');
+        game.load.image('rightOutline','assets/RightArrow_outline.png');
+        game.load.image('downOutline','assets/DownArrow_outline.png');
+        game.load.image('leftOutline','assets/LeftArrow_outline.png');
+
+        //load audio assets
+        game.load.audio('song1', ['assets/harder_better_faster_stronger.mp3', 'assets/harder_better_faster_stronger.ogg']);
+    },
+
+    update:function(){
+        if (this.cache.isSoundDecoded('song1'))
+        {
+            this.state.start('GameState');
+        }
+    }
+}
+
+//////////////
+//Game State//
+//////////////
+
+var GameState = { preload: preload, create: create, update: update };
+
+var game = new Phaser.Game(800, 600, Phaser.AUTO, '');
+game.state.add('PrebootState', PrebootState);
+game.state.add('PreloadState', PreloadState);
+game.state.add('GameState', GameState);
+game.state.start('PrebootState');
 
 var LeftArrows;
 var DownArrows;
@@ -30,19 +95,7 @@ var song;
 
 function preload() {
 
-    game.load.image('arrowUp', 'assets/UpArrow.png');
-    game.load.image('arrowDown', 'assets/DownArrow.png');
-    game.load.image('arrowLeft', 'assets/LeftArrow.png');
-    game.load.image('arrowRight', 'assets/RightArrow.png');
-    game.load.image('background', 'assets/Background.png');
-    game.load.image('killzone', 'assets/Killzone.png');
-
-    game.load.image('upOutline','assets/UpArrow_outline.png');
-    game.load.image('rightOutline','assets/RightArrow_outline.png');
-    game.load.image('downOutline','assets/DownArrow_outline.png');
-    game.load.image('leftOutline','assets/LeftArrow_outline.png');
-
-    game.load.audio('song1', ['assets/harder_better_faster_stronger.mp3', 'assets/harder_better_faster_stronger.ogg'])
+    
 }
 
 function create() {
@@ -202,15 +255,6 @@ function LPress(){
         }
     }, this);
 }
-
-/*function updateCounter(){
-
-    createArrow('left');
-    createArrow('up');
-    createArrow('down');
-    createArrow('right');
-
-}*/
 
 function createArrow(direction){
     switch(direction){
