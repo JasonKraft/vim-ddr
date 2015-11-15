@@ -8,7 +8,7 @@ mongoose.connect('mongodb://localhost/vim_ddr', function(err){
 });
 
 var db = mongoose.connection;
-var Jason = new User({
+var Jason = new User.User({
     username: "LimitedWard",
     password: "Lady'sman1357"
     
@@ -20,7 +20,7 @@ db.once('open', function() {
     Jason.save(function(err) {
         if (err) throw err;
         else {
-            //Jason.defineProgress("Hello", 2, 3, 4);
+            Jason.defineProgress("Hello", 2, 3, 4);
 
             //Jason.progress.push(Progress);
             console.log(Jason.getName());
