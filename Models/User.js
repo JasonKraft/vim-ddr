@@ -1,6 +1,7 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
+
 var userSchema = new Schema(
     {
         username: { type: String, required: true, unique: true },
@@ -45,18 +46,25 @@ userSchema.pre('save', function(next) {
     next();
 });
 
-/*userSchema.Progress = {
-    songName: "",
-    easyScore: "",
-    mediumScore: "",
-    hardScore: ""
+userSchema.methods.updateProgress = function(progressItem)
+{
+    this.progress.push(progressItem);
 };
 
-userSchema.methods.defineProgress = function(sName, eScore, mScore, hScore) {
+userSchema.methods.defineProgress = function(sName, eScore, mScore, hScore)
+{
+    var progressObj = new Object(
+    {
+        songName: sName,
+        easyScore: eScore,
+        mediumScore: mScore,
+        hardScore: hScore
+    });
     
-    var p = 
-}*/
+    this.updateProgress(progressObj);
+};
+
 var User = mongoose.model('User', userSchema);
 
-module.exports = User;
+module.exports.User = User;
 
