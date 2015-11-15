@@ -533,7 +533,7 @@ var score = 0;
 var scoreText;
 var killzone;
 
-var songSpeed = -400;
+var songSpeed = -200;
 
 var song;
 
