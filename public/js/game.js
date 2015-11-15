@@ -12,7 +12,7 @@
 
 var songData = {
     songName : "Pokemon Theme Song",
-    url : "assets/pokemon_theme_song",
+    url : "assets/harder_better_faster_stronger",
     difficulty : "EZPZ",
     data : [[1,5381],
 [2,5694],
@@ -722,7 +722,7 @@ var songData = {
 [8,221924],
 [2,222417],
 [4,222420],
-];/*[[1,5950],
+]/*[[1,5950],
 [1,6177],
 [1,6367],
 [2,7036],
