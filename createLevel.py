@@ -2,6 +2,7 @@ import pygame
 import sys
 import time
 import math
+import os
 
 pygame.init()
 BLACK = (0,0,0)
@@ -14,8 +15,9 @@ currentTime = 0
 started = True
 windowSurface.fill(BLACK)
 gameLoop = True
+fName = 'notes.txt'
 
-f = open("notes.txt", 'w')
+f = open(fName, 'w')
 
 def calculateMS():
 	return math.trunc((time.time() - startTime) * 1000)
@@ -23,7 +25,7 @@ def calculateMS():
 def writeToFile(sumNum, timeTaken):
 	f.write("[" + str(sumNum) + "," + str(timeTaken) + "]," + "\n")
 
-f.write("[")
+f.write("var arrayLevel = [")
 while gameLoop:
 	if(started):
 		startTime = time.time()
@@ -64,5 +66,16 @@ while gameLoop:
 			elif(event.key == pygame.K_c):
 				gameLoop = False
 
-f.write("]")
+f.write("];\nmodule.exports.arrayLevel = arrayLevel;")
 f.close()
+
+
+files = os.listdir(os.curdir)
+for file in files:
+    if '.txt' in file:
+        if(os.path.isfile(fName[:-4] + '.js')):
+            os.remove(os.curdir + '/notes.js')
+        newfile = file.replace('.txt', '.js')
+        os.rename(file, newfile)
+        break
+        
