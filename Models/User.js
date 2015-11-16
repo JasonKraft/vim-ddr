@@ -80,7 +80,7 @@ userSchema.methods.defineProgress = function(sName, Score)
     var progressObj = new Object(
     {
         songName: sName,
-        userScore: eScore,
+        userScore: Score,
         //mediumScore: mScore,
         //hardScore: hScore
     });
