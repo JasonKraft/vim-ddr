@@ -163,7 +163,7 @@ app.get('/login', function(req, res, next) {
 });
 
 app.post('/login', passport.authenticate('login'), function(req, res) {
-	res.redirect('/menu');
+	res.redirect('/login');
 });
 
 app.get('/logout', function(req, res) {
